@@ -1,6 +1,8 @@
 <header class='row'>
   <div class='col-sm-5 pull-left'>
-    <h3><%= t('CronJobs') %></h3>
+    <h3><%= t('CronJobs') %>
+      <small>Schedules are staggered to spread out the load</small>
+    </h3>
   </div>
   <div class='col-sm-7 pull-right' style="margin-top: 20px; margin-bottom: 10px;">
     <% if @cron_jobs.size > 0 %>

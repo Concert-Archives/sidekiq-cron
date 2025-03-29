@@ -48,7 +48,7 @@
     <td><pre><%= @job.pretty_message %></pre></td>
   </tr>
   <tr>
-    <th><%= t 'Cron' %></th>
+    <th><%= t 'Schedule' %></th>
     <td><%= @job.cron.gsub(" ", "&nbsp;") %></td>
   </tr>
   <tr>
@@ -79,7 +79,7 @@
       <tr>
         <td>
           <% enqueued_time = jid_history['enqueued'].is_a?(String) ? Time.parse(jid_history['enqueued']) : jid_history['enqueued'] %>
-          <%= enqueued_time.in_time_zone('Pacific Time (US & Canada)') %>
+          <%= enqueued_time.in_time_zone('Pacific Time (US & Canada)').strftime('%B %d, %Y %I:%M %p %Z') %>
           (<%= relative_time(enqueued_time) %>)
         </td>
         <td><%= jid_history['jid'] %></td>
