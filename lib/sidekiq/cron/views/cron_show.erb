@@ -9,7 +9,7 @@
     <% cron_job_path = "#{root_path}cron/#{CGI.escape(@job.name).gsub('+', '%20')}" %>
     <form action="<%= cron_job_path %>/enque?redirect=<%= cron_job_path %>" method="post">
       <%= csrf_tag if respond_to?(:csrf_tag) %>
-      <input class="btn btn-warn pull-left" name="enque" type="submit" value="<%= t('EnqueueNow') %>" data-confirm="<%= t('AreYouSureEnqueueCronJob', :job => @job.name) %>" />
+      <input class="btn btn-warn pull-left" name="enque" type="submit" value="<%= t('RunNow') %>" data-confirm="<%= t('AreYouSureRunCronJob', :job => @job.name) %>" />
     </form>
     <% if @job.status == 'enabled' %>
       <form action="<%= cron_job_path %>/disable?redirect=<%= cron_job_path %>" method="post">
@@ -78,8 +78,9 @@
     <% @job.jid_history_from_redis.each do |jid_history| %>
       <tr>
         <td>
-          <%= jid_history['enqueued'].in_time_zone('Pacific Time (US & Canada)') %>
-          (<%= relative_time(jid_history['enqueued']) %>)
+          <% enqueued_time = jid_history['enqueued'].is_a?(String) ? Time.parse(jid_history['enqueued']) : jid_history['enqueued'] %>
+          <%= enqueued_time.in_time_zone('Pacific Time (US & Canada)') %>
+          (<%= relative_time(enqueued_time) %>)
         </td>
         <td><%= jid_history['jid'] %></td>
       </tr>
