@@ -1,7 +1,7 @@
 <header class='row'>
   <div class='col-sm-5 pull-left'>
     <h3><%= t('CronJobs') %>
-      <small>Schedules are staggered to spread out the load</small>
+      <small>(Schedules are staggered to spread out the load)</small>
     </h3>
   </div>
   <div class='col-sm-7 pull-right' style="margin-top: 20px; margin-bottom: 10px;">
@@ -35,7 +35,7 @@
 
     <tbody>
       <% @cron_jobs.sort{|a,b| a.sort_name <=> b.sort_name }.each_with_index do |job, index| %>
-        <% style = "#{job.status == 'disabled' ? "background: #ecc; color: #585454;": ""}" %>
+        <% style = "#{job.status == 'disabled' ? "background: #ddd; color: #585454;": ""}" %>
         <tr>
           <td style="<%= style %>"><%= t job.status %></td>
           <td style="<%= style %>">
